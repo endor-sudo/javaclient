@@ -18,7 +18,7 @@ public class GI{
         button0.setPreferredSize(new Dimension(300, 150));
 
         gerir_clientes(button0, frame);
-        //criar_cliente(button1, frame);
+        criar_cliente(button1, frame);
 
         panel = new JPanel();
 
@@ -45,7 +45,7 @@ public class GI{
                 new GListar(frame);
             }  
         });  
-    }/*
+    }
     public void criar_cliente(JButton button, JFrame frame) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
@@ -54,5 +54,5 @@ public class GI{
                 new GCriar(frame);
             }  
         });  
-    }    */
+    }    
 }
