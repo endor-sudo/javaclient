@@ -1,4 +1,5 @@
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,13 +12,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.awt.event.*;
 
 public class GListar{
+    private JPanel panel_top;
     private JPanel panel;
 
     public GListar (JFrame frame){
 
+        JLabel title = new JLabel("Clientes");
+        JButton Homebutton=new JButton("Menu");
+
         panel = new JPanel();
+        panel_top = new JPanel();
+
+        panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+        panel.setLayout(new GridLayout(0,1));
+
+        panel_top.setBorder(BorderFactory.createEmptyBorder(30,35,0,35));
+        panel_top.setLayout(new GridLayout(0,1));
+        panel_top.add(Homebutton);
+        panel_top.add(title);
         
         ArrayList<ArrayList<String>> allclients=clients();
         
@@ -28,15 +43,14 @@ public class GListar{
             label=new JLabel(label_text); 
             panel.add(label); 
         }
-        
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
-        panel.setLayout(new GridLayout(0,1));
 
         JScrollPane scrollPane = new JScrollPane(panel);
 
-        frame.add(scrollPane, BorderLayout.CENTER);
-        frame.pack();
+        frame.add(panel_top, BorderLayout.NORTH);
+        frame.add(scrollPane);
         frame.setVisible(true);
+
+        get_back(Homebutton, frame, scrollPane);
     }
 
     public ArrayList<ArrayList<String>>  clients(){
@@ -58,7 +72,6 @@ public class GListar{
                     while (tokenizer.hasMoreElements()) {
                         String token=tokenizer.nextToken();
                         client_info.add(token);
-                        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+token+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     }
                     clients_.add(client_info);
                 } 
@@ -72,4 +85,15 @@ public class GListar{
 
         return clients_;
     }
+    public void get_back(JButton button, JFrame frame, JScrollPane scrollPane) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                frame.remove(scrollPane);
+                frame.remove(panel_top);
+                panel=null;
+                panel_top=null;
+                new GI(frame);
+            }  
+        });  
+    }    
 }

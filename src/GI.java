@@ -6,21 +6,19 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GI{
-    private JFrame frame;
     private JPanel panel;
 
-    public GI (){
+    public GI (JFrame frame) {
 
-        frame=new JFrame();
 
-        JButton button0=new JButton("Listar Clientes Activos");
-        JButton button1=new JButton("Adicionar Cliente Novo");
-        JButton button2=new JButton("Eliminar Cliente-Desactivar");
-        JButton button3=new JButton("Modificar Cliente/Actualizar dados");
-        JButton button4=new JButton("Consultar Movimentos-Crédito Disponível");
-        JButton button5=new JButton("Lançar Movimento-Debitar/Creditar");
+        JButton button0=new JButton("Gerir Clientes");
+        JButton button1=new JButton("Criar Cliente");
+        JButton button2=new JButton("Consultar Saldos");
+        JButton button3=new JButton("Lançar Movimento");
+        button0.setPreferredSize(new Dimension(300, 150));
 
-        change_text(button0, frame);
+        gerir_clientes(button0, frame);
+        //criar_cliente(button1, frame);
 
         panel = new JPanel();
 
@@ -31,8 +29,6 @@ public class GI{
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);
-        panel.add(button4);
-        panel.add(button5);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +37,7 @@ public class GI{
         frame.setVisible(true);
     }
 
-    public void change_text(JButton button, JFrame frame) {
+    public void gerir_clientes(JButton button, JFrame frame) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
                 frame.remove(panel);
@@ -49,5 +45,14 @@ public class GI{
                 new GListar(frame);
             }  
         });  
-    }    
+    }/*
+    public void criar_cliente(JButton button, JFrame frame) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                frame.remove(panel);
+                panel=null;
+                new GCriar(frame);
+            }  
+        });  
+    }    */
 }
