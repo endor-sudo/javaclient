@@ -1,4 +1,5 @@
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,6 +13,7 @@ import java.awt.event.*;
 public class GListar{
     private JPanel panel_top;
     private JPanel panel;
+    private JScrollPane scrollPane;
 
     public GListar (JFrame frame){
 
@@ -39,26 +41,30 @@ public class GListar{
             String label_text;
             JLabel label;
             JButton inspecionarBtn;
-            label_text=i.get(0)+'-'+i.get(2);
-            label=new JLabel(label_text); 
-            inspecionarBtn=new JButton("Inspeccionar");
-            if (j%2==0){
-                label.setForeground(Color.blue);
-                inspecionarBtn.setForeground(Color.blue);
+
+            if (i.get(1).equals("true")){
+                label_text=i.get(0)+'-'+i.get(2);
+                label=new JLabel(label_text); 
+                inspecionarBtn=new JButton(new ImageIcon("MG.png"));
+                if (j%2==0){
+                    label.setForeground(Color.black);
+                }
+                else{
+                    label.setForeground(Color.DARK_GRAY);
+                }
+                go_inpeccionar(inspecionarBtn, label_text, frame, panel_top );
+                client_panel.add(label);
+                client_panel.add(inspecionarBtn);
+                client_panel.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+                panel.add(client_panel);
+                j++;
             }
             else{
-                label.setForeground(Color.red);
-                inspecionarBtn.setForeground(Color.red);
+                continue;
             }
-            go_inpeccionar(inspecionarBtn, label_text);
-            client_panel.add(label);
-            client_panel.add(inspecionarBtn);
-            client_panel.setLayout(new FlowLayout(FlowLayout.CENTER)); 
-            panel.add(client_panel);
-            j++;
         }
 
-        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane = new JScrollPane(panel);
 
         frame.add(panel_top, BorderLayout.NORTH);
         frame.add(scrollPane);
@@ -78,10 +84,10 @@ public class GListar{
             }  
         });  
     }    
-    public void go_inpeccionar(JButton button, String cliente_nome) {
+    public void go_inpeccionar(JButton button, String cliente_nome, JFrame frame, JPanel panel_top) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                new Ficha(cliente_nome);
+                new Ficha(cliente_nome, frame, panel_top, scrollPane);
             }  
         });  
     }    

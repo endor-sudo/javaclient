@@ -2,6 +2,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import java.awt.*;
@@ -14,7 +15,7 @@ public class Ficha {
     private Fregues inprecionado=null;
     private JFrame client_file= new JFrame();
 
-    public Ficha(String cliente_nome){
+    public Ficha(String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane){
         JPanel painel=new JPanel();
 
         new Clientes();
@@ -62,17 +63,41 @@ public class Ficha {
         painel.setLayout(new GridLayout(0, 1));
 
         JButton editar=new JButton("Confirmar Edição");
-        editar.setForeground(Color.green);
+        editar.setForeground(Color.blue);
         editar.setPreferredSize(new Dimension(300, 50));
-        editar_ficha(editar, fields, obj_clientes, cliente_nome);
+        editar_ficha(editar, fields, obj_clientes, cliente_nome, frame, panel_top, scrollPane);
         painel.add(editar);
+
+        JButton eliminar=new JButton("Eliminar");
+        eliminar.setForeground(Color.red);
+        eliminar.setPreferredSize(new Dimension(300, 50));
+        eliminar_ficha(eliminar, fields, obj_clientes, cliente_nome, frame, panel_top, scrollPane);
+        painel.add(eliminar);
         
         client_file.add(painel);
         client_file.setTitle(cliente_nome);
         client_file.pack();
         client_file.setVisible(true);
     }
-    public void editar_ficha(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome) {
+    public void editar_ficha(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                button.setText("De certeza?");
+                button.setForeground(Color.red);
+                editar_ficha_mesmo(button, fields, obj_clientes, cliente_nome, frame, panel_top, scrollPane);
+            }  
+        });  
+    }    
+    public void eliminar_ficha(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                button.setText("De certeza?");
+                button.setForeground(Color.red);
+                eliminar_ficha_mesmo(button, fields, obj_clientes, cliente_nome, frame, panel_top, scrollPane);
+            }  
+        });  
+    }    
+    public void editar_ficha_mesmo(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
 
@@ -101,6 +126,36 @@ public class Ficha {
 
                 new Escrever();
                 Escrever.escrever_ficheiro(obj_clientes, button, client_file);
+                
+
+                frame.remove(panel_top);
+                frame.remove(scrollPane);
+                new GListar(frame);
+                
+            }  
+        });  
+    }    
+    public void eliminar_ficha_mesmo(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+
+                String control_nome;
+
+                for (Fregues i: obj_clientes){
+                    control_nome=i.cod+'-'+i.nome;
+                    if (control_nome.equals(cliente_nome)){
+                        i.natureza="false";
+                        break;
+                    }
+                }
+
+                new Escrever();
+                Escrever.escrever_ficheiro(obj_clientes, button, client_file);
+                
+
+                frame.remove(panel_top);
+                frame.remove(scrollPane);
+                new GListar(frame);
                 
             }  
         });  

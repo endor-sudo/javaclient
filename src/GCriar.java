@@ -38,6 +38,7 @@ public class GCriar {
         }
 
         JButton createbBtn = new JButton("Criar");
+        createbBtn.setForeground(Color.blue);
         panel.add(createbBtn);
         create_client(createbBtn, frame, fields);
 
@@ -56,6 +57,16 @@ public class GCriar {
     }
 
     public void create_client(JButton button, JFrame frame, ArrayList<JTextField> fields) {
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                button.setForeground(Color.red);
+                button.setText("Está tudo certo?");
+                create_client_mesmo(button, frame, fields);
+            }  
+        });  
+    }
+
+    public void create_client_mesmo(JButton button, JFrame frame, ArrayList<JTextField> fields) {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -97,6 +108,10 @@ public class GCriar {
                     printWriter.close(); 
                     bufferedWriter.close(); 
                     fileWriter.close();
+
+                    frame.remove(panel);
+                    new GCriar(frame);
+
                     }
                 catch (IOException ex) {
                     System.out.println("Ocorreu um erro!");

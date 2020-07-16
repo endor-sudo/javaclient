@@ -1,5 +1,5 @@
-1001;true;Pedro;Travessa da Rua Antiga;nº2;Portimão;Faro;11111111111;email@email.com;123456789;987654321;5000
-1002;true;João;Travessa da Rua Antiga;nº3;Portimão;Faro;912345678;email@email.com;123456789;987654321;5001
+1001;false;PedrocasOléOlá!;Travessa da Rua Antiga;nº2;Portimão;Faro;11111111111;email@email.com;123456789;987654321;5000
+1002;true;João Pedro;Travessa da Rua Antiga;nº3;Portimão;Faro;912345678;email@email.com;123456789;987654321;5001
 1003;true;António Pedro;Travessa da Rua Antiga;nº4;Portimão;Faro;912345678;email@email.com;123456789;987654321;5002
 1004;true;Rui Manuel Almeida Miranda;Travessa da Rua Antiga;nº5;Portimão;Faro;912345678;email@email.com;123456789;987654321;5003
 1005;true;Rui Manuel Almeida;Travessa da Rua Antiga;nº6;Portimão;Faro;912345678;email@email.com;123456789;987654321;5004
@@ -219,4 +219,9 @@
 1219;true;Rui Manuel Almeida;Travessa da Rua Antiga;nº220;Portimão;Faro;912345678;email@email.com;123456789;987654321;5218
 1220;true;Rui Manuel Almeida;Travessa da Rua Antiga;nº221;Portimão;Faro;912345678;email@email.com;123456789;987654321;5219
 1221;true;Rui Manuel Almeida;Travessa da Rua Antiga;nº222;Portimão;Faro;912345678;email@email.com;123456789;987654321;5220
-1222;true;História;Morada;Localidade;Código Postal;Cidade;Distrito;Telefone;Email;Cartão de Cidadão;Nº de Contribuinte;Crédito Máximo
+1222;true;História;Morada;Localidade;Código Postal;Cidade;Distrito;Telefone;Email;Cartão de Cidadão;Nº de Contribuinte
+1223;true;Cheque;Morada;Localidade;Código Postal;Cidade;Distrito;Telefone;Email;Cartão de Cidadão;Nº de Contribuinte
+1224;true;Jéssica;Morada;Localidade;Código Postal;Cidade;Distrito;Telefone;Email;Cartão de Cidadão;Nº de Contribuinte
+1225;true;Dalila;Morada;Localidade;Código Postal;Cidade;Distrito;Telefone;Email;Cartão de Cidadão;Nº de Contribuinte
+1226;true;Gomes;Morada;Localidade;Código Postal;Cidade;Distrito;Telefone;Email;Cartão de Cidadão;Nº de Contribuinte
+1227;true;Hash;Morada;Localidade;Código Postal;Cidade;Distrito;Telefone;Email;Cartão de Cidadão;Nº de Contribuinte
