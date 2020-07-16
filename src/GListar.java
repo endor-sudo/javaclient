@@ -26,19 +26,36 @@ public class GListar{
         panel.setLayout(new GridLayout(0,1));
 
         panel_top.setBorder(BorderFactory.createEmptyBorder(30,35,0,35));
-        panel_top.setLayout(new GridLayout(0,1));
         panel_top.add(Homebutton);
         panel_top.add(title);
+        panel_top.setLayout(new GridLayout(0,1));
         
         new Clientes();
         ArrayList<ArrayList<String>> allclients=Clientes.clients();
         
+        int j=0;
         for (ArrayList<String> i : allclients){
+            JPanel client_panel=new JPanel();
             String label_text;
             JLabel label;
+            JButton inspecionarBtn;
             label_text=i.get(0)+'-'+i.get(2);
             label=new JLabel(label_text); 
-            panel.add(label); 
+            inspecionarBtn=new JButton("Inspeccionar");
+            if (j%2==0){
+                label.setForeground(Color.blue);
+                inspecionarBtn.setForeground(Color.blue);
+            }
+            else{
+                label.setForeground(Color.red);
+                inspecionarBtn.setForeground(Color.red);
+            }
+            go_inpeccionar(inspecionarBtn, label_text);
+            client_panel.add(label);
+            client_panel.add(inspecionarBtn);
+            client_panel.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+            panel.add(client_panel);
+            j++;
         }
 
         JScrollPane scrollPane = new JScrollPane(panel);
@@ -58,6 +75,13 @@ public class GListar{
                 panel=null;
                 panel_top=null;
                 new GI(frame);
+            }  
+        });  
+    }    
+    public void go_inpeccionar(JButton button, String cliente_nome) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                new Ficha(cliente_nome);
             }  
         });  
     }    

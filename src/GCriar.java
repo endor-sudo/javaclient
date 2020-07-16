@@ -23,36 +23,12 @@ public class GCriar {
         JButton Homebutton = new JButton("Menu");
 
         panel = new JPanel();
-        JTextField t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11;
 
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         panel.setLayout(new GridLayout(0, 1));
 
-        t1 = new JTextField("Nome");
-        t2 = new JTextField("Morada");
-        t3 = new JTextField("Localidade");
-        t4 = new JTextField("Código Postal");
-        t5 = new JTextField("Cidade");
-        t6 = new JTextField("Distrito");
-        t7 = new JTextField("Telefone");
-        t8 = new JTextField("Email");
-        t9 = new JTextField("Cartão de Cidadão");
-        t10 = new JTextField("Nº de Contribuinte");
-        t11 = new JTextField("Crédito Máximo");
-
-        ArrayList<JTextField> fields = new ArrayList<JTextField>();
-
-        fields.add(t1);
-        fields.add(t2);
-        fields.add(t3);
-        fields.add(t4);
-        fields.add(t5);
-        fields.add(t6);
-        fields.add(t7);
-        fields.add(t8);
-        fields.add(t9);
-        fields.add(t10);
-        fields.add(t11);
+        new Clientes();
+        ArrayList<JTextField> fields=Clientes.campos();
 
         panel.add(Homebutton);
         get_back(Homebutton, frame);
