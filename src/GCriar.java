@@ -1,4 +1,5 @@
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,7 +21,7 @@ public class GCriar {
 
     public GCriar(JFrame frame) {
 
-        JButton Homebutton = new JButton("Menu");
+        JButton Homebutton = new JButton(new ImageIcon("homeSm.png"));
 
         panel = new JPanel();
 
@@ -38,7 +39,7 @@ public class GCriar {
         }
 
         JButton createbBtn = new JButton("Criar");
-        createbBtn.setForeground(Color.blue);
+        createbBtn.setForeground(Color.green);
         panel.add(createbBtn);
         create_client(createbBtn, frame, fields);
 
@@ -59,9 +60,20 @@ public class GCriar {
     public void create_client(JButton button, JFrame frame, ArrayList<JTextField> fields) {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                button.setForeground(Color.red);
-                button.setText("Está tudo certo?");
-                create_client_mesmo(button, frame, fields);
+                boolean goodtogo=true;
+                for (JTextField i: fields){
+                    System.out.println(i.getText());
+                    if(i.getText().equals("")){
+                        button.setText("Preencher todos os campos!");
+                        goodtogo=false;
+                        break;
+                    }
+                }
+                if (goodtogo){
+                    button.setForeground(Color.ORANGE);
+                    button.setText("Está tudo certo?");
+                    create_client_mesmo(button, frame, fields);
+                }
             }  
         });  
     }

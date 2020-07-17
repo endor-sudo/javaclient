@@ -1,4 +1,5 @@
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,9 @@ public class Ficha {
 
     public Ficha(String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane){
         JPanel painel=new JPanel();
+        JButton movimBtn= new JButton(new ImageIcon("dollar.png"));
+        painel.add(movimBtn);
+        lancar_movim(movimBtn, cliente_nome);
 
         new Clientes();
         ArrayList<JTextField> fields=Clientes.campos();
@@ -26,7 +30,8 @@ public class Ficha {
         String control_nome;
 
         for (ArrayList<String> i:lista_cliente){
-            obj_clientes.add(new Fregues(i.get(0),i.get(1),i.get(2),i.get(3),i.get(4),i.get(5),i.get(6),i.get(7),i.get(8),i.get(9),i.get(10),i.get(11)));
+            obj_clientes.add(new Fregues(i.get(0),i.get(1),i.get(2),i.get(3),
+            i.get(4),i.get(5),i.get(6),i.get(7),i.get(8),i.get(9),i.get(10),i.get(11)));
         }
 
         System.out.println(cliente_nome);
@@ -40,7 +45,7 @@ public class Ficha {
             }
         }
 
-        //era mais fácil fazer isto sem uma classe para os clientes, estando a usar uma GUI,
+        //acho que era mais fácil fazer isto sem uma classe para os clientes, estando a usar uma GUI,
         //mas só a criei porque fazia parte do é avaliado
         fields.get(0).setText(inprecionado.nome);
         fields.get(1).setText(inprecionado.morada1);
@@ -79,25 +84,28 @@ public class Ficha {
         client_file.pack();
         client_file.setVisible(true);
     }
-    public void editar_ficha(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
+    public void editar_ficha(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes,
+     String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                button.setText("De certeza?");
-                button.setForeground(Color.red);
+                button.setText("Editar de certeza?");
+                button.setForeground(Color.cyan);
                 editar_ficha_mesmo(button, fields, obj_clientes, cliente_nome, frame, panel_top, scrollPane);
             }  
         });  
     }    
-    public void eliminar_ficha(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
+    public void eliminar_ficha(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, 
+    String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                button.setText("De certeza?");
-                button.setForeground(Color.red);
+                button.setText("Eliminar de certeza?");
+                button.setForeground(Color.magenta);
                 eliminar_ficha_mesmo(button, fields, obj_clientes, cliente_nome, frame, panel_top, scrollPane);
             }  
         });  
     }    
-    public void editar_ficha_mesmo(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
+    public void editar_ficha_mesmo(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, 
+    String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
 
@@ -135,7 +143,8 @@ public class Ficha {
             }  
         });  
     }    
-    public void eliminar_ficha_mesmo(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes, String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
+    public void eliminar_ficha_mesmo(JButton button, ArrayList<JTextField> fields, ArrayList<Fregues> obj_clientes,
+     String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
 
@@ -157,6 +166,13 @@ public class Ficha {
                 frame.remove(scrollPane);
                 new GListar(frame);
                 
+            }  
+        });  
+    }    
+    public void lancar_movim(JButton button, String cliente_nome) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                new Gmovim(cliente_nome);
             }  
         });  
     }    

@@ -18,8 +18,7 @@ public class GListar{
     public GListar (JFrame frame){
 
         JLabel title = new JLabel("Clientes");
-        JButton Homebutton=new JButton("Menu");
-        Homebutton.setPreferredSize(new Dimension(300, 50));
+        JButton Homebutton=new JButton(new ImageIcon("homeSm.png"));
 
         panel = new JPanel();
         panel_top = new JPanel();
@@ -28,9 +27,9 @@ public class GListar{
         panel.setLayout(new GridLayout(0,1));
 
         panel_top.setBorder(BorderFactory.createEmptyBorder(30,35,0,35));
+        panel_top.setLayout(new GridLayout(0,1));
         panel_top.add(Homebutton);
         panel_top.add(title);
-        panel_top.setLayout(new GridLayout(0,1));
         
         new Clientes();
         ArrayList<ArrayList<String>> allclients=Clientes.clients();
@@ -53,9 +52,9 @@ public class GListar{
                     label.setForeground(Color.DARK_GRAY);
                 }
                 go_inpeccionar(inspecionarBtn, label_text, frame, panel_top );
-                client_panel.add(label);
                 client_panel.add(inspecionarBtn);
-                client_panel.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+                client_panel.add(label);
+                client_panel.setLayout(new FlowLayout(FlowLayout.LEFT)); 
                 panel.add(client_panel);
                 j++;
             }

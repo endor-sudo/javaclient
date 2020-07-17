@@ -41,18 +41,17 @@ public class Clientes {
         return clients_;
     }
     public static ArrayList<JTextField> campos(){
-        JTextField t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11;
+        JTextField t1, t2, t3, t4, t5, t6, t7, t8, t9, t10;
         t1 = new JTextField("Nome");
-        t2 = new JTextField("Morada");
-        t3 = new JTextField("Localidade");
-        t4 = new JTextField("Código Postal");
-        t5 = new JTextField("Cidade");
-        t6 = new JTextField("Distrito");
-        t7 = new JTextField("Telefone");
-        t8 = new JTextField("Email");
-        t9 = new JTextField("Cartão de Cidadão");
-        t10 = new JTextField("Nº de Contribuinte");
-        t11 = new JTextField("Crédito Máximo");
+        t2 = new JTextField("Morada-linha1");
+        t3 = new JTextField("Morada-linha2");
+        t4 = new JTextField("Localidade");
+        t5 = new JTextField("Distrito");
+        t6 = new JTextField("Telefone");
+        t7 = new JTextField("Email");
+        t8 = new JTextField("Cartão de Cidadão");
+        t9 = new JTextField("Nº de Contribuinte");
+        t10 = new JTextField("Crédito Máximo");
 
         ArrayList<JTextField> fields = new ArrayList<JTextField>();
 
@@ -66,7 +65,6 @@ public class Clientes {
         fields.add(t8);
         fields.add(t9);
         fields.add(t10);
-        fields.add(t11);
 
         return fields;
 

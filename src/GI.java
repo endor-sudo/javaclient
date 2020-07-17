@@ -13,9 +13,8 @@ public class GI{
 
         JButton button0=new JButton("Gerir Clientes");
         JButton button1=new JButton("Criar Cliente");
-        JButton button2=new JButton("Consultar Saldos");
-        JButton button3=new JButton("Lançar Movimento");
-        button0.setPreferredSize(new Dimension(300, 150));
+        JButton button2=new JButton("Recuperar Cliente");
+        button0.setPreferredSize(new Dimension(400, 200));
 
         gerir_clientes(button0, frame);
         criar_cliente(button1, frame);
@@ -28,12 +27,12 @@ public class GI{
         panel.add(button0);
         panel.add(button1);
         panel.add(button2);
-        panel.add(button3);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Gestao Pagamentos");
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
