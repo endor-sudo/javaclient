@@ -14,10 +14,18 @@ public class GListar{
     private JPanel panel_top;
     private JPanel panel;
     private JScrollPane scrollPane;
+    private JFrame client_file;
 
-    public GListar (JFrame frame){
+    public GListar (JFrame frame, String activo){
 
-        JLabel title = new JLabel("Clientes");
+        String titulo;
+        if (activo.equals("true")){
+            titulo="Clientes";
+        }
+        else {
+            titulo="Clientes Inactivos";
+        }
+        JLabel title = new JLabel(titulo);
         JButton Homebutton=new JButton(new ImageIcon("homeSm.png"));
 
         panel = new JPanel();
@@ -33,35 +41,45 @@ public class GListar{
         
         new Clientes();
         ArrayList<ArrayList<String>> allclients=Clientes.clients();
-        
-        int j=0;
-        for (ArrayList<String> i : allclients){
-            JPanel client_panel=new JPanel();
-            String label_text;
-            JLabel label;
-            JButton inspecionarBtn;
 
-            if (i.get(1).equals("true")){
-                label_text=i.get(0)+'-'+i.get(2);
-                label=new JLabel(label_text); 
-                inspecionarBtn=new JButton(new ImageIcon("MG.png"));
-                if (j%2==0){
-                    label.setForeground(Color.black);
+        if (allclients.size()==0){
+            JPanel client_panel=new JPanel();
+            JLabel label;
+            label=new JLabel("O negócio está fraquinho, hein...?!"); 
+            client_panel.add(label);
+            panel.add(client_panel);
+        }
+        else{
+            int j=0;
+            for (ArrayList<String> i : allclients){
+                JPanel client_panel=new JPanel();
+                String label_text;
+                JLabel label;
+                JButton inspecionarBtn;
+
+                if (i.get(1).equals(activo)){
+                    label_text=i.get(0)+'-'+i.get(2);
+                    label=new JLabel(label_text); 
+                    inspecionarBtn=new JButton(new ImageIcon("MG.png"));
+                    if (j%2==0){
+                        label.setForeground(Color.black);
+                    }
+                    else{
+                        label.setForeground(Color.DARK_GRAY);
+                    }
+                    go_inpeccionar(inspecionarBtn, label_text, frame, panel_top,activo);
+                    client_panel.add(inspecionarBtn);
+                    client_panel.add(label);
+                    client_panel.setLayout(new FlowLayout(FlowLayout.LEFT)); 
+                    panel.add(client_panel);
+                    j++;
                 }
                 else{
-                    label.setForeground(Color.DARK_GRAY);
+                    continue;
                 }
-                go_inpeccionar(inspecionarBtn, label_text, frame, panel_top );
-                client_panel.add(inspecionarBtn);
-                client_panel.add(label);
-                client_panel.setLayout(new FlowLayout(FlowLayout.LEFT)); 
-                panel.add(client_panel);
-                j++;
-            }
-            else{
-                continue;
             }
         }
+            
 
         scrollPane = new JScrollPane(panel);
 
@@ -83,10 +101,22 @@ public class GListar{
             }  
         });  
     }    
-    public void go_inpeccionar(JButton button, String cliente_nome, JFrame frame, JPanel panel_top) {
+    public void go_inpeccionar(JButton button, String cliente_nome, JFrame frame, JPanel panel_top, String activo) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                new Ficha(cliente_nome, frame, panel_top, scrollPane);
+                if (client_file==null){
+                    client_file= new JFrame();
+                    client_file.addWindowListener(new WindowAdapter()
+                    {
+                        @Override
+                        public void windowClosing(WindowEvent e)
+                        {
+                            e.getWindow().dispose();
+                            client_file=null;
+                        }
+                    });
+                    new Ficha(cliente_nome, frame, panel_top, scrollPane, activo, client_file);
+                }
             }  
         });  
     }    

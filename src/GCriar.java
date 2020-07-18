@@ -121,6 +121,8 @@ public class GCriar {
                     bufferedWriter.close(); 
                     fileWriter.close();
 
+                    criar_creditoTXT(str_num_cliente);
+
                     frame.remove(panel);
                     new GCriar(frame);
 
@@ -130,6 +132,28 @@ public class GCriar {
                 }
             }  
         });  
+    }
+
+
+    public void criar_creditoTXT(String client_number){
+        
+
+        String MyFileName = "bd/"+client_number+".txt";
+        File MyFile = new File(MyFileName);
+        try{
+            if (MyFile.exists()){
+                System.out.println("O ficheiro " + MyFile.getName() + " já existe!"); 
+            }
+            else{
+                MyFile.createNewFile();
+            } 
+        }
+        catch (IOException ex) {
+            System.out.println("Ocorreu um erro");
+            ex.printStackTrace(); 
+        }
+
+
     }
 
 }

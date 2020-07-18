@@ -18,6 +18,7 @@ public class GI{
 
         gerir_clientes(button0, frame);
         criar_cliente(button1, frame);
+        recuperar_cliente(button2, frame);
 
         panel = new JPanel();
 
@@ -41,7 +42,8 @@ public class GI{
             public void actionPerformed(ActionEvent e){
                 frame.remove(panel);
                 panel=null;
-                new GListar(frame);
+                String activo="true";
+                new GListar(frame, activo);
             }  
         });  
     }
@@ -51,6 +53,16 @@ public class GI{
                 frame.remove(panel);
                 panel=null;
                 new GCriar(frame);
+            }  
+        });  
+    }    
+    public void recuperar_cliente(JButton button, JFrame frame) {
+        button.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                frame.remove(panel);
+                panel=null;
+                String activo="false";
+                new GListar(frame, activo);
             }  
         });  
     }    
