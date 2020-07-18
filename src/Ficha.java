@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Ficha {
 
+    JFrame gmovim_frame;
     private Fregues inprecionado=null;
 
     public Ficha(String cliente_nome, JFrame frame, JPanel panel_top, JScrollPane scrollPane, 
@@ -58,7 +59,7 @@ public class Ficha {
         fields.get(9).setText(inprecionado.max_cred);
 
         String maxScred=inprecionado.max_cred;
-        lancar_movim(movimBtn, cliente_nome,maxScred, activo);
+        lancar_movim(movimBtn, cliente_nome,maxScred, activo, client_file);
         
 
         for (JTextField i : fields) {
@@ -191,11 +192,30 @@ public class Ficha {
             }  
         });  
     }    
-    public void lancar_movim(JButton button, String cliente_nome, String maxScred, String activo) {
+    public void lancar_movim(JButton button, String cliente_nome, String maxScred, String activo, JFrame client_file) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                JFrame gmovim_frame= new JFrame();
-                new Gmovim(gmovim_frame,cliente_nome, maxScred, activo);
+                if (gmovim_frame==null){
+                    gmovim_frame= new JFrame();
+                    gmovim_frame.addWindowListener(new WindowAdapter(){
+                        @Override
+                        public void windowClosing(WindowEvent e)
+                        {
+                            e.getWindow().dispose();
+                            gmovim_frame.dispose();
+                            gmovim_frame=null;
+                        }
+                    });
+                    client_file.addWindowListener(new WindowAdapter(){
+                        @Override
+                        public void windowClosing(WindowEvent e)
+                        {
+                            e.getWindow().dispose();
+                            gmovim_frame.dispose();
+                        }
+                    });
+                    new Gmovim(gmovim_frame,cliente_nome, maxScred, activo);
+                }
             }  
         });  
     }    

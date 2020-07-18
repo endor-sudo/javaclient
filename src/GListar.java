@@ -106,8 +106,7 @@ public class GListar{
             public void actionPerformed(ActionEvent e){
                 if (client_file==null){
                     client_file= new JFrame();
-                    client_file.addWindowListener(new WindowAdapter()
-                    {
+                    client_file.addWindowListener(new WindowAdapter(){
                         @Override
                         public void windowClosing(WindowEvent e)
                         {
