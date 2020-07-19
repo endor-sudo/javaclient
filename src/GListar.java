@@ -15,6 +15,7 @@ public class GListar{
     private JPanel panel;
     private JScrollPane scrollPane;
     private JFrame client_file;
+    private boolean empty=true;
 
     public GListar (JFrame frame, String activo){
 
@@ -42,10 +43,29 @@ public class GListar{
         new Clientes();
         ArrayList<ArrayList<String>> allclients=Clientes.clients();
 
-        if (allclients.size()==0){
+
+        for (ArrayList<String> i : allclients){
+            if (activo.equals("true")){
+                if (i.get(1).equals(activo)){
+                    empty=false;
+                }
+            }
+            else{
+                if (i.get(1).equals(activo)){
+                    empty=false;
+                }
+            }
+        }
+
+        if (empty){
             JPanel client_panel=new JPanel();
             JLabel label;
-            label=new JLabel("O negócio está fraquinho, hein...?!"); 
+            if (activo.equals("true")){
+                label=new JLabel("O negócio está fraquinho, hein...?!"); 
+            }
+            else{
+                label=new JLabel("Não há clientes inactivos."); 
+            }
             client_panel.add(label);
             panel.add(client_panel);
         }
@@ -97,7 +117,8 @@ public class GListar{
                 frame.remove(panel_top);
                 panel=null;
                 panel_top=null;
-                new GI(frame);
+                boolean first=false;
+                new GI(frame, first);
             }  
         });  
     }    

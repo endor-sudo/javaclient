@@ -8,6 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Gestao {
 
     public static JFrame frame = new JFrame();
+    private static boolean first=true;
 
     public static void main(String[] args) throws Exception {
 
@@ -33,7 +34,7 @@ public class Gestao {
                 | UnsupportedLookAndFeelException e1) {
             e1.printStackTrace();
         }
-        new GI(frame);
+        new GI(frame, first);
     }
 
 }

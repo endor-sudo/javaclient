@@ -52,7 +52,8 @@ public class GCriar {
             public void actionPerformed(ActionEvent e) {
                 frame.remove(panel);
                 panel = null;
-                new GI(frame);
+                boolean first=false;
+                new GI(frame, first);
             }
         });
     }

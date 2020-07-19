@@ -8,7 +8,7 @@ import java.awt.event.*;
 public class GI{
     private JPanel panel;
 
-    public GI (JFrame frame) {
+    public GI (JFrame frame, boolean first) {
 
 
         JButton button0=new JButton("Gerir Clientes");
@@ -33,7 +33,10 @@ public class GI{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Gestao Pagamentos");
         frame.pack();
-        frame.setLocationRelativeTo(null);
+        if (first){
+            first=false;
+            frame.setLocationRelativeTo(null);
+        }
         frame.setVisible(true);
     }
 
