@@ -211,7 +211,9 @@ public class Ficha {
                         public void windowClosing(WindowEvent e)
                         {
                             e.getWindow().dispose();
-                            gmovim_frame.dispose();
+                            if (gmovim_frame!=null){
+                                gmovim_frame.dispose();
+                            }
                         }
                     });
                     new Gmovim(gmovim_frame,cliente_nome, maxScred, activo);
