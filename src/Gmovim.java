@@ -1,5 +1,6 @@
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,13 +27,15 @@ public class Gmovim{
     private double balance;
     public Gmovim(JFrame gmovim_frame, String cliente_nome, String maxScred, String activo){
         JPanel panel= new JPanel();
+        JPanel panel_s= new JPanel();
         JPanel scroll_mov= new JPanel();
         JPanel max_mov= new JPanel();
         JPanel bal_mov= new JPanel();
         scroll_mov.setLayout(new GridLayout(0,1));
         
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
-        panel.setLayout(new GridLayout(0,1));
+        new GroupLayout(panel);
+        panel_s.setLayout(new BorderLayout());
 
         ArrayList<ArrayList<String>> movimentos=ler_TXT(cliente_nome);
 
@@ -75,11 +78,12 @@ public class Gmovim{
             panel.add(valor);
 
             JButton make_mov=new JButton("Lançar");
-            panel.add(make_mov);
-            make_mov_action(make_mov, gmovim_frame, r1,r2, cliente_nome, valor, panel, maxScred);
+            panel_s.add(make_mov);
+            make_mov_action(make_mov, gmovim_frame, r1,r2, cliente_nome, valor, panel, maxScred, panel_s);
         }
 
         gmovim_frame.add(panel);
+        gmovim_frame.add(panel_s, BorderLayout.SOUTH);
         gmovim_frame.setTitle("Lançar Movimento a "+cliente_nome);
         gmovim_frame.pack();
         gmovim_frame.setVisible(true);
@@ -121,7 +125,7 @@ public class Gmovim{
 
     }
     public void make_mov_action(JButton button, JFrame frame, JRadioButton r1, JRadioButton r2, 
-    String cliente_nome, JTextField valor, JPanel panel, String maxScred) {
+    String cliente_nome, JTextField valor, JPanel panel, String maxScred, JPanel panel_s) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
                 double valor_double;
@@ -160,7 +164,7 @@ public class Gmovim{
                 if (success){
                     button.setText("De certeza?");
                     button.setForeground(Color.magenta);
-                    make_mov_action_mesmo(button, frame, r1, r2, cliente_nome, valor, panel, maxScred);
+                    make_mov_action_mesmo(button, frame, r1, r2, cliente_nome, valor, panel, maxScred, panel_s);
                 }
                 else{
                     button.setText("Isso não conta!");
@@ -170,12 +174,13 @@ public class Gmovim{
         });  
     }    
     public void make_mov_action_mesmo(JButton button, JFrame frame, JRadioButton r1, JRadioButton r2, 
-    String cliente_nome, JTextField valor, JPanel panel, String maxScred) {
+    String cliente_nome, JTextField valor, JPanel panel, String maxScred, JPanel panel_s) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
                 String valor_texto=valor.getText();
                 escrever_mov(r1,r2, cliente_nome, valor_texto);
                 frame.remove(panel);
+                frame.remove(panel_s);
                 String activo="true";
                 new Gmovim(frame, cliente_nome, maxScred, activo);
             }  
