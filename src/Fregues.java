@@ -1,4 +1,4 @@
-public class Fregues {
+public class Fregues {//optei por definir tudo como String, porque os dados mo permitem e eu acho que potencia a minimização de erros no meu código contribuindo para a expectabilidade dos data types.
 
     String cod,natureza,nome,morada1,morada2,localidade,distrito,telefone,email,n_cidadão,contribuinte,max_cred;
 

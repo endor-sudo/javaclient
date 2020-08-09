@@ -10,12 +10,13 @@ public class GI{
 
     public GI (JFrame frame, boolean first) {
 
-
+        //Botões
         JButton button0=new JButton("Gerir Clientes");
         JButton button1=new JButton("Criar Cliente");
         JButton button2=new JButton("Recuperar Cliente");
         button0.setPreferredSize(new Dimension(400, 200));
 
+        //listeners/action_events respectivos
         gerir_clientes(button0, frame);
         criar_cliente(button1, frame);
         recuperar_cliente(button2, frame);
@@ -33,7 +34,7 @@ public class GI{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Gestao Pagamentos");
         frame.pack();
-        if (first){
+        if (first){//evitar posicionamento automático da janela
             first=false;
             frame.setLocationRelativeTo(null);
         }
@@ -43,9 +44,9 @@ public class GI{
     public void gerir_clientes(JButton button, JFrame frame) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                frame.remove(panel);
+                frame.remove(panel);//reset frame
                 panel=null;
-                String activo="true";
+                String activo="true";//flag para listagem
                 new GListar(frame, activo);
             }  
         });  
@@ -53,7 +54,7 @@ public class GI{
     public void criar_cliente(JButton button, JFrame frame) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                frame.remove(panel);
+                frame.remove(panel);//reset frame
                 panel=null;
                 new GCriar(frame);
             }  
@@ -62,9 +63,9 @@ public class GI{
     public void recuperar_cliente(JButton button, JFrame frame) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                frame.remove(panel);
+                frame.remove(panel);//reset frame
                 panel=null;
-                String activo="false";
+                String activo="false";//flag para listagem
                 new GListar(frame, activo);
             }  
         });  

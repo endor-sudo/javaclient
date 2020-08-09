@@ -37,20 +37,20 @@ public class Gmovim{
         new GroupLayout(panel);
         panel_s.setLayout(new BorderLayout());
 
-        ArrayList<ArrayList<String>> movimentos=ler_TXT(cliente_nome);
+        ArrayList<ArrayList<String>> movimentos=ler_TXT(cliente_nome);//função que saca os movimentos do .txt do cliente
 
 
         JLabel max_label=new JLabel("Crédito Máximo:"+maxScred);
         max_label.setForeground(Color.red);
         max_mov.add(max_label);
-        ArrayList<Double> mov_doubles=new ArrayList<>();
+        ArrayList<Double> mov_doubles=new ArrayList<>();//popula painel dos movimentos
         for (ArrayList<String> i:movimentos){
             JLabel label=new JLabel(i.get(0)+"                "+i.get(1));
             scroll_mov.add(label);
             mov_doubles.add(Double.parseDouble(i.get(1)));
         }
 
-        double total = mov_doubles.stream().mapToDouble(f -> f.doubleValue()).sum();
+        double total = mov_doubles.stream().mapToDouble(f -> f.doubleValue()).sum();//saldo dos movimentos
 
         balance=Double.parseDouble(maxScred)+total;
         JLabel balance_label=new JLabel("Crédito Actual:"+String.valueOf(balance));
@@ -63,7 +63,7 @@ public class Gmovim{
         panel.add(scrollPane);
         panel.add(bal_mov);
 
-        if (activo.equals("true")){
+        if (activo.equals("true")){//if statement que impossibilita lançamentos em clientes desactivos
             JRadioButton r1=new JRadioButton("A) Débito");    
             JRadioButton r2=new JRadioButton("B) Crédito");    
             r1.setBounds(75,50,100,30);    
@@ -74,7 +74,7 @@ public class Gmovim{
             panel.add(r2);     
 
             JTextField valor=new JTextField();
-            valor.setText("Valor a lançar");;
+            valor.setText("Valor a lançar");
             panel.add(valor);
 
             JButton make_mov=new JButton("Lançar");
@@ -88,7 +88,7 @@ public class Gmovim{
         gmovim_frame.pack();
         gmovim_frame.setVisible(true);
     }
-    public ArrayList<ArrayList<String>> ler_TXT(String cliente_nome){
+    public ArrayList<ArrayList<String>> ler_TXT(String cliente_nome){//lê o .txt e devolve uma lista dos valores
         
         String FileName=get_file_name(cliente_nome);
 

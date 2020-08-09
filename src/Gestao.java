@@ -12,8 +12,7 @@ public class Gestao {
 
     public static void main(String[] args) throws Exception {
 
-        //usar MyFile.createNewFile()
-
+        //verificar existência do ficheiro BD
         File MyFile = new File("bd/clientes.csv");
         try{
             if (MyFile.exists()){
@@ -34,7 +33,7 @@ public class Gestao {
                 | UnsupportedLookAndFeelException e1) {
             e1.printStackTrace();
         }
-        new GI(frame, first);
+        new GI(frame, first);//lançar GUI
     }
 
 }

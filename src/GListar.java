@@ -20,6 +20,7 @@ public class GListar{
     public GListar (JFrame frame, String activo){
 
         String titulo;
+        //determinar titulo
         if (activo.equals("true")){
             titulo="Clientes";
         }
@@ -27,10 +28,12 @@ public class GListar{
             titulo="Clientes Inactivos";
         }
         JLabel title = new JLabel(titulo);
+
+        //botão HOME
         JButton Homebutton=new JButton(new ImageIcon("homeSm.png"));
 
-        panel = new JPanel();
-        panel_top = new JPanel();
+        panel = new JPanel();//painel cliente
+        panel_top = new JPanel();//painel cabeçalho
 
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
         panel.setLayout(new GridLayout(0,1));
@@ -41,9 +44,9 @@ public class GListar{
         panel_top.add(title);
         
         new Clientes();
-        ArrayList<ArrayList<String>> allclients=Clientes.clients();
+        ArrayList<ArrayList<String>> allclients=Clientes.clients();//invocar lista de clientes segundo uma metodolgia
 
-
+        //filtrar os clientes a listar consoante estejam activos e o que foi requisitado pelo utilizador
         for (ArrayList<String> i : allclients){
             if (activo.equals("true")){
                 if (i.get(1).equals(activo)){
@@ -57,6 +60,7 @@ public class GListar{
             }
         }
 
+        //caso não haja nada a listar, indicar ao utilizador
         if (empty){
             JPanel client_panel=new JPanel();
             JLabel label;
@@ -69,7 +73,7 @@ public class GListar{
             client_panel.add(label);
             panel.add(client_panel);
         }
-        else{
+        else{//listar os clientes
             int j=0;
             for (ArrayList<String> i : allclients){
                 JPanel client_panel=new JPanel();
@@ -113,7 +117,7 @@ public class GListar{
     public void get_back(JButton button, JFrame frame, JScrollPane scrollPane) {
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                frame.remove(scrollPane);
+                frame.remove(scrollPane);//reset frame
                 frame.remove(panel_top);
                 panel=null;
                 panel_top=null;
@@ -126,8 +130,8 @@ public class GListar{
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
                 if (client_file==null){
-                    client_file= new JFrame();
-                    client_file.addWindowListener(new WindowAdapter(){
+                    client_file= new JFrame();//nova janela para inspeccionar cliente
+                    client_file.addWindowListener(new WindowAdapter(){//permite discartar a janela a ser criada de modo a que se possa voltar a abrir a janela da ficha do mesmo ou outro cliente
                         @Override
                         public void windowClosing(WindowEvent e)
                         {
@@ -135,7 +139,7 @@ public class GListar{
                             client_file=null;
                         }
                     });
-                    new Ficha(cliente_nome, frame, panel_top, scrollPane, activo, client_file);
+                    new Ficha(cliente_nome, frame, panel_top, scrollPane, activo, client_file);//lança ficha
                 }
             }  
         });  
